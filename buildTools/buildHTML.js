@@ -16,9 +16,9 @@ fs.readFile('src/index.html', 'utf8', (err, markup) => {
 
   // since a separate spreadsheet is only utilized for the production build, need to dynamically add this here.
   $('head').prepend('<meta charset="utf-8">');
-  $('head').prepend('<link type="text/css" rel="stylesheet" href="../styles/styles.css">');
+  $('head').prepend('<link type="text/css" rel="stylesheet" href="/assets/styles.css">');
   $('body').find($('script')).remove();
-  $('#app').after('<script src="../scripts/bundle.js"></script>');
+  $('#app').after('<script src="/assets/bundle.js"></script>');
   fs.writeFile('public/index.html', $.html(), 'utf8', function (err) {
     if (err) {
       return console.log(err);

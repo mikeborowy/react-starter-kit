@@ -29,6 +29,7 @@ module.exports = {
 			canPrint: true
 		}),
 	],
+	postcss: {},
 	node:{
 		net: 'empty',
 		dns: 'empty'
@@ -47,35 +48,26 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				loader: 'style-loader!css-loader!postcss-loader',
+				loader: 'style-loader!css-loader!autoprefixer-loader',
 			},
 			{
 				test: /\.scss$/,
-				loader: 'style-loader!css-loader!postcss-loader!sass-loader'
-			},
-			{
-				test: /\.less$/,
-				loader: 'style-loader!css-loader!less-loader'
+				loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
 			},
 			{
 				test: /bootstrap\/js\//,
 				loader: 'imports?jQuery=jquery'
 			},
+			// Font Definitions
+			{ test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff&name=../fonts/[name].[ext]' },
+			{ test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/vnd.ms-fontobject&name=../fonts/[name].[ext]' },
+			{ test: /\.[ot]tf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream&name=../fonts/[name].[ext]' },
+			{ test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml&name=../fonts/[name].[ext]' },
+			//Images
 			{
-				test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
-				loader: "url?limit=10000&mimetype=application/font-woff"
-			},
-			{
-				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-				loader: "url?limit=10000&mimetype=application/octet-stream"
-			},
-			{
-				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-				loader: "file"
-			},
-			{
-				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-				loader: "url?limit=10000&mimetype=image/svg+xml"
+				test: /\.(jpg|jpeg|gif|png)$/,
+				exclude: /(node_modules)/,
+				loader: "file-loader?name=../images/[name].[ext]"
 			}
 		]
 	}
